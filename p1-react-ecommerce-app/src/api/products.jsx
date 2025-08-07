@@ -1,37 +1,61 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-const PostList = () => {
-  const [posts, setPosts] = useState([]);
-  const [error, setError] = useState(null);
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPesoSign, faStar, faTruck } from "@fortawesome/free-solid-svg-icons";
+
+const Products = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
+    fetch("https://fakestoreapi.com/products/")
       .then((response) => {
-        // console.log(response);
         if (!response.ok) {
-          throw new Error(`Unable to load Posts. Please try again later.`);
+          throw new Error(`Unable to load products. Please try again later.`);
         }
         return response.json();
       })
-      .then((data) => setPosts(data))
-      .catch((error) => setError(error.message));
+      .then((data) => {
+        setProducts(data);
+        console.log(data);
+
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoading(false);
+      });
   }, []);
 
   return (
-    <>
-      <h1>Post List</h1>
-      {error ? (
-        <div>Error: {error}</div>
+    <div>
+      <h1>Products List</h1>
+      {loading ? (
+        <h3>loading... </h3>
+      ) : error ? (
+        <h3> Error: {error}</h3>
       ) : (
-        <ul>
-          {posts.map((post) => {
-            <li className="post-list" key={post.id}>
-              {post.title}
-            </li>;
-          })}
-        </ul>
+        products.map((product) => (
+          <div key={product.id} className="product-item">
+            <img src={product.image} width="100px" />
+
+            <Link to={`/products/${product.id}`}>
+              <h5> {product.title}</h5>
+              <p>
+                <FontAwesomeIcon icon={faPesoSign} />
+                {product.price} <br />
+                <FontAwesomeIcon icon={faStar} />
+                {product.rating.rate} <br />
+                <FontAwesomeIcon icon={faTruck} />
+                {product.rating.count}
+              </p>
+            </Link>
+          </div>
+        ))
       )}
-    </>
+    </div>
   );
 };
-export default PostList;
+export default Products;
