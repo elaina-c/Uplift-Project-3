@@ -37,11 +37,14 @@ const Products = () => {
       ) : error ? (
         <h3> Error: {error}</h3>
       ) : (
-        products.map((product) => (
-          <div key={product.id} className="product-item">
-            <img src={product.image} width="100px" />
-
-            <Link to={`/products/${product.id}`}>
+        <div>
+          {products.map((product) => (
+            <div
+              key={product.id}
+              className="product-item"
+              onClick={() => setSelectedProduct(product)}
+            >
+              <img src={product.image} width="100px" />
               <h5> {product.title}</h5>
               <p>
                 <FontAwesomeIcon icon={faPesoSign} />
@@ -51,9 +54,9 @@ const Products = () => {
                 <FontAwesomeIcon icon={faTruck} />
                 {product.rating.count}
               </p>
-            </Link>
-          </div>
-        ))
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
