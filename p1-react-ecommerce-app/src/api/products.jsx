@@ -8,6 +8,7 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products/")
@@ -42,6 +43,12 @@ const Products = () => {
             <div
               key={product.id}
               className="product-item"
+              style={{
+                border: "1px solid #ccc",
+                marginBottom: "10px",
+                padding: "10px",
+                cursor: "pointer",
+              }}
               onClick={() => setSelectedProduct(product)}
             >
               <img src={product.image} width="100px" />
@@ -56,6 +63,24 @@ const Products = () => {
               </p>
             </div>
           ))}
+
+          {selectedProduct && (
+            <div className="Product-Details">
+              <h2>{selectedProduct.title}</h2>
+              <img src={selectedProduct.image} width="100px" />
+              <h5> {selectedProduct.title}</h5>
+              <p>
+                {selectedProduct.description} <br />
+                <FontAwesomeIcon icon={faPesoSign} />
+                {selectedProduct.price} <br />
+                <FontAwesomeIcon icon={faStar} />
+                {selectedProduct.rating.rate} <br />
+                <FontAwesomeIcon icon={faTruck} />
+                {selectedProduct.rating.count}{" "}
+              </p>
+              <button onClick={() => setSelectedProduct(null)}>Close</button>
+            </div>
+          )}
         </div>
       )}
     </div>
