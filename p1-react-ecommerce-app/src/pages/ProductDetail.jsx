@@ -1,6 +1,5 @@
-import React, { useParams } from "react";
-import Products from "../api/products";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPesoSign, faStar, faTruck } from "@fortawesome/free-solid-svg-icons";
@@ -20,9 +19,7 @@ const ProductDetail = () => {
         return response.json();
       })
       .then((data) => {
-        setProducts(data);
-        console.log(data);
-
+        setProduct(data);
         setLoading(false);
       })
       .catch((error) => {
@@ -36,18 +33,18 @@ const ProductDetail = () => {
   if (!product) return <p>No product found.</p>;
 
   return (
-    <div>
-      <h5> {product.title}</h5>
-      <img src={product.image} width="200px" />
+    <div className="Product-Details">
+      <h2>{product.title}</h2>
+      <img src={product.image} width="100px" alt={product.title} />
+      <p>{product.description}</p>
       <p>
-        {product.description} <br />
-        <FontAwesomeIcon icon={faPesoSign} />
-        {product.price} <br />
-        <FontAwesomeIcon icon={faStar} />
-        {product.rating.rate} <br />
-        <FontAwesomeIcon icon={faTruck} />
-        {product.rating.count}
+        <FontAwesomeIcon icon={faPesoSign} /> {product.price} <br />
+        <FontAwesomeIcon icon={faStar} /> {product.rating.rate} <br />
+        <FontAwesomeIcon icon={faTruck} /> {product.rating.count}
       </p>
+      <Link to="/">
+        <button>Back</button>
+      </Link>
     </div>
   );
 };
