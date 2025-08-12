@@ -3,12 +3,16 @@ import { useParams, Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPesoSign, faStar, faTruck } from "@fortawesome/free-solid-svg-icons";
+import { useCart } from "../context/CartContext";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const { addToCart } = useCart();
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${id}`)
@@ -42,9 +46,14 @@ const ProductDetail = () => {
         <FontAwesomeIcon icon={faStar} /> {product.rating.rate} <br />
         <FontAwesomeIcon icon={faTruck} /> {product.rating.count}
       </p>
-      <Link to="/">
-        <button>Back</button>
-      </Link>
+
+      <div>
+        <Link to="/">
+          <button>Back</button>
+        </Link>
+
+        <button onClick={() => addToCart(product)}>Add To Cart</button>
+      </div>
     </div>
   );
 };

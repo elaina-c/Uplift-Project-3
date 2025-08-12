@@ -9,7 +9,7 @@ import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   return (
-    <Router>
+    <>
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -18,7 +18,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/product/:id" element={<ProductDetail />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 
