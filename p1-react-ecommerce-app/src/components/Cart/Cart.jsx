@@ -2,7 +2,8 @@ import React from "react";
 import { useCart } from "./CartContext.jsx";
 
 const Cart = () => {
-  const { cart, removeFromCart, clearCart } = useCart();
+  const { cart, removeFromCart, clearCart, addItem, decreaseQuantity } =
+    useCart();
 
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
@@ -25,22 +26,51 @@ const Cart = () => {
           }}
         >
           <div>
+            <img src={item.image} width="100px" alt={item.title} />
             <h4>{item.title}</h4>
             <p>Price: ₱{item.price}</p>
             <p>Quantity: {item.quantity}</p>
           </div>
-          <button
-            onClick={() => removeFromCart(item.id)}
-            style={{
-              background: "red",
-              color: "white",
-              border: "none",
-              padding: "6px 12px",
-              cursor: "pointer",
-            }}
-          >
-            Remove
-          </button>
+          <div>
+            <button
+              onClick={() => removeFromCart(item.id)}
+              style={{
+                background: "red",
+                color: "white",
+                border: "none",
+                padding: "6px 12px",
+                cursor: "pointer",
+              }}
+            >
+              Remove
+            </button>
+            <div>
+              <button
+                onClick={() => decreaseQuantity(item.id)}
+                style={{
+                  background: "red",
+                  color: "white",
+                  border: "none",
+                  padding: "6px 12px",
+                  cursor: "pointer",
+                }}
+              >
+                -
+              </button>
+              <button
+                onClick={() => addItem(item.id)}
+                style={{
+                  background: "red",
+                  color: "white",
+                  border: "none",
+                  padding: "6px 12px",
+                  cursor: "pointer",
+                }}
+              >
+                +
+              </button>
+            </div>
+          </div>
         </div>
       ))}
 
