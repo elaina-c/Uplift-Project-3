@@ -14,6 +14,7 @@ const Cart = () => {
   return (
     <div style={{ padding: "20px" }}>
       <h2>🛒 Your Cart</h2>
+
       {cart.map((item) => (
         <div
           key={item.id}
@@ -29,9 +30,34 @@ const Cart = () => {
             <img src={item.image} width="100px" alt={item.title} />
             <h4>{item.title}</h4>
             <p>Price: ₱{item.price}</p>
+            <p>Subtotal: ₱{item.price * item.quantity}</p>
             <p>Quantity: {item.quantity}</p>
           </div>
           <div>
+            <button
+              onClick={() => decreaseQuantity(item.id)}
+              style={{
+                background: "red",
+                color: "white",
+                border: "none",
+                padding: "6px 12px",
+                cursor: "pointer",
+              }}
+            >
+              -
+            </button>
+            <button
+              onClick={() => addItem(item.id)}
+              style={{
+                background: "red",
+                color: "white",
+                border: "none",
+                padding: "6px 12px",
+                cursor: "pointer",
+              }}
+            >
+              +
+            </button>
             <button
               onClick={() => removeFromCart(item.id)}
               style={{
@@ -44,32 +70,6 @@ const Cart = () => {
             >
               Remove
             </button>
-            <div>
-              <button
-                onClick={() => decreaseQuantity(item.id)}
-                style={{
-                  background: "red",
-                  color: "white",
-                  border: "none",
-                  padding: "6px 12px",
-                  cursor: "pointer",
-                }}
-              >
-                -
-              </button>
-              <button
-                onClick={() => addItem(item.id)}
-                style={{
-                  background: "red",
-                  color: "white",
-                  border: "none",
-                  padding: "6px 12px",
-                  cursor: "pointer",
-                }}
-              >
-                +
-              </button>
-            </div>
           </div>
         </div>
       ))}
