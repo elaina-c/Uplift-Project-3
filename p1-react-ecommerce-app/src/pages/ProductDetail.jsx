@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPesoSign, faStar, faTruck } from "@fortawesome/free-solid-svg-icons";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../components/Cart/CartContext.jsx";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -15,6 +15,7 @@ const ProductDetail = () => {
   const { addToCart } = useCart();
 
   useEffect(() => {
+    console.log("Fetching product with ID:", id);
     fetch(`https://fakestoreapi.com/products/${id}`)
       .then((response) => {
         if (!response.ok) {

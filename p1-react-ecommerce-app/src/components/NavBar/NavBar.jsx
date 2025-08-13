@@ -1,7 +1,12 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import Style from "./NavBar.module.css";
 
 function NavBar() {
+  const { cart } = useCart();
+
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
     <nav className={Style.navbar}>
       <Link to="/">Home</Link>
