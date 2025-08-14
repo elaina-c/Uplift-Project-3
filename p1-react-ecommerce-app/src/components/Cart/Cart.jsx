@@ -30,7 +30,9 @@ const Cart = () => {
             <img src={item.image} width="100px" alt={item.title} />
             <h4>{item.title}</h4>
             <p>Price: ₱{item.price}</p>
-            <p>Subtotal: ₱{item.price * item.quantity}</p>
+            <p>
+              Subtotal: ₱{(item.price * item.quantity).toLocaleString(en - PH)}
+            </p>
             <p>Quantity: {item.quantity}</p>
           </div>
           <div>
