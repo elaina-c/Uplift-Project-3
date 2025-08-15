@@ -80,3 +80,22 @@ _Note: Remember to git add, git commit and git push regularly._
 ## Resources
 
 - [How to deploy React Apps in less than 30 Seconds](https://www.netlify.com/blog/2016/07/22/deploy-react-apps-in-less-than-30-seconds/)
+
+          {selectedProduct && (
+            <div className="Product-Details">
+              <h2>{selectedProduct.title}</h2>
+              <img src={selectedProduct.image} width="100px" />
+              <h5> {selectedProduct.title}</h5>
+              <p>
+                {selectedProduct.description} <br />
+                <FontAwesomeIcon icon={faPesoSign} />
+                {selectedProduct.price} <br />
+                <FontAwesomeIcon icon={faStar} />
+                {selectedProduct.rating.rate} <br />
+                <FontAwesomeIcon icon={faTruck} />
+                {selectedProduct.rating.count}{" "}
+              </p>
+              <button onClick={() => setSelectedProduct(null)}>Close</button>
+            </div>
+          )}
+        </div>
