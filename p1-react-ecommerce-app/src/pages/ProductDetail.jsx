@@ -12,11 +12,11 @@ const ProductDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const { addToCart } = useCart();
+  const { cart, addToCart, decreaseQuantity } = useCart();
 
   useEffect(() => {
     console.log("Fetching product with ID:", id);
-    fetch(`https://fakestoreapi.com/products/${id}`)
+    fetch(`https://dummyjson.com/products/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Failed to fetch product. Please try again later.`);
@@ -37,15 +37,17 @@ const ProductDetail = () => {
   if (error) return <p>Error: {error}</p>;
   if (!product) return <p>No product found.</p>;
 
+  const inCart = cart.find((item) => item.id === product.id);
+
   return (
     <div className="Product-Details">
       <h2>{product.title}</h2>
-      <img src={product.image} width="100px" alt={product.title} />
+      <img src={product.thumbnail} width="100px" alt={product.title} />
       <p>{product.description}</p>
       <p>
         <FontAwesomeIcon icon={faPesoSign} /> {product.price} <br />
-        <FontAwesomeIcon icon={faStar} /> {product.rating.rate} <br />
-        <FontAwesomeIcon icon={faTruck} /> {product.rating.count}
+        <FontAwesomeIcon icon={faStar} /> {product.rating} <br />
+        <FontAwesomeIcon icon={faTruck} /> {product.stock}
       </p>
 
       <div>
@@ -53,7 +55,18 @@ const ProductDetail = () => {
           <button>Back</button>
         </Link>
 
-        <button onClick={() => addToCart(product)}>Add To Cart</button>
+        {(() => {
+          const inCart = cart.find((item) => item.id === product.id);
+          return (
+            <div>
+              <button onClick={() => decreaseQuantity(product.id)}>-</button>
+              <span style={{ margin: "0 10px" }}>
+                {inCart ? inCart.quantity : 0}
+              </span>
+              <button onClick={() => addToCart(product)}>+</button>
+            </div>
+          );
+        })()}
       </div>
     </div>
   );

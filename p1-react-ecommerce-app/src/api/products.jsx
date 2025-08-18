@@ -1,89 +1,46 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useCart } from "../components/Cart/CartContext";
+import styles from "../components/ProductCard/ProductCard.module.css";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPesoSign, faStar, faTruck } from "@fortawesome/free-solid-svg-icons";
-
-const Products = () => {
+const CategoryProducts = () => {
+  const { categoryName } = useParams();
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const { addToCart } = useCart();
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products/")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Unable to load products. Please try again later.`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setProducts(data);
-        console.log(data);
+    fetch(`https://dummyjson.com/products/category/${categoryName}`)
+      .then((res) => res.json())
+      .then((data) => setProducts(data.products))
+      .catch((error) => console.error("Error fetching products:", error));
+  }, [categoryName]);
 
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error.message);
-        setLoading(false);
-      });
-  }, []);
+  const formatPrice = (price) => {
+    return price.toLocaleString("en-PH", {
+      style: "currency",
+      currency: "PHP",
+    });
+  };
 
   return (
-    <div>
-      <h1>Products List</h1>
-      {loading ? (
-        <h3>loading... </h3>
-      ) : error ? (
-        <h3> Error: {error}</h3>
-      ) : (
-        <div>
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="product-item"
-              style={{
-                border: "1px solid #ccc",
-                marginBottom: "10px",
-                padding: "10px",
-                cursor: "pointer",
-              }}
-              onClick={() => setSelectedProduct(product)}
-            >
-              <img src={product.image} width="100px" />
-              <h5> {product.title}</h5>
-              <p>
-                <FontAwesomeIcon icon={faPesoSign} />
-                {product.price} <br />
-                <FontAwesomeIcon icon={faStar} />
-                {product.rating.rate} <br />
-                <FontAwesomeIcon icon={faTruck} />
-                {product.rating.count}
-              </p>
-            </div>
-          ))}
-
-          {selectedProduct && (
-            <div className="Product-Details">
-              <h2>{selectedProduct.title}</h2>
-              <img src={selectedProduct.image} width="100px" />
-              <h5> {selectedProduct.title}</h5>
-              <p>
-                {selectedProduct.description} <br />
-                <FontAwesomeIcon icon={faPesoSign} />
-                {selectedProduct.price} <br />
-                <FontAwesomeIcon icon={faStar} />
-                {selectedProduct.rating.rate} <br />
-                <FontAwesomeIcon icon={faTruck} />
-                {selectedProduct.rating.count}{" "}
-              </p>
-              <button onClick={() => setSelectedProduct(null)}>Close</button>
-            </div>
-          )}
-        </div>
-      )}
+    <div style={{ padding: "20px" }}>
+      <h2>{categoryName.toUpperCase()}</h2>
+      <div className={styles.productGrid}>
+        {products.map((product) => (
+          <div key={product.id} className={styles.productCard}>
+            <img
+              src={product.thumbnail}
+              alt={product.title}
+              className={styles.productImage}
+            />
+            <h3>{product.title}</h3>
+            <p>{formatPrice(product.price)}</p>
+            <button onClick={() => addToCart(product)}>Add to Cart</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
-export default Products;
+
+export default CategoryProducts;

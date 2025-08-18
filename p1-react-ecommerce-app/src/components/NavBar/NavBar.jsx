@@ -13,7 +13,7 @@ function NavBar() {
       <Link to="/">Home</Link>
       <Link to="/category">Categories</Link>
       <Link to="/about">About Us</Link>
-      <Link to="/cart">Cart</Link>
+      <Link to="/cart">Cart ({totalItems})</Link>
     </nav>
   );
 }

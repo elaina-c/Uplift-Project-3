@@ -40,7 +40,7 @@ const Cart = () => {
             <tr key={item.id}>
               <td>
                 {" "}
-                <img src={item.image} width="100px" alt={item.title} />
+                <img src={item.thumbnail} width="100px" alt={item.title} />
               </td>
               <td>{item.title}</td>
               <td>{formatPrice(item.price)}</td>

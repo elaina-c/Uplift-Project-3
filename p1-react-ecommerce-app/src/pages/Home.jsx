@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { useCart } from "../components/Cart/CartContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPesoSign, faStar, faTruck } from "@fortawesome/free-solid-svg-icons";
 
@@ -8,9 +8,10 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const { addToCart } = useCart();
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products/")
+    fetch("https://dummyjson.com/products?limit=50")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Unable to load products. Please try again later.`);
@@ -18,9 +19,7 @@ const Home = () => {
         return response.json();
       })
       .then((data) => {
-        setProducts(data);
-        console.log(data);
-
+        setProducts(data.products);
         setLoading(false);
       })
       .catch((error) => {
@@ -31,7 +30,7 @@ const Home = () => {
 
   if (loading) return <p>Loading . . .</p>;
   if (error) return <p>Error: {error}</p>;
-  if (!products) return <p>No product found.</p>;
+  if (!products.length) return <p>No product found.</p>;
 
   return (
     <div>
@@ -50,15 +49,14 @@ const Home = () => {
               cursor: "pointer",
             }}
           >
-            <img src={product.image} width="100px" />
-            <h5> {product.title}</h5>
+            <img src={product.thumbnail} width="100px" alt={product.title} />
+            <h5>{product.title}</h5>
             <p>
-              <FontAwesomeIcon icon={faPesoSign} />
-              {product.price} <br />
-              <FontAwesomeIcon icon={faStar} />
-              {product.rating.rate} <br />
-              <FontAwesomeIcon icon={faTruck} />
-              {product.rating.count}
+              <FontAwesomeIcon icon={faPesoSign} /> {product.price}
+              <br />
+              <FontAwesomeIcon icon={faStar} /> {product.rating}
+              <br />
+              <FontAwesomeIcon icon={faTruck} /> {product.stock} in stock
             </p>
           </div>
         </Link>
@@ -66,4 +64,5 @@ const Home = () => {
     </div>
   );
 };
+
 export default Home;
