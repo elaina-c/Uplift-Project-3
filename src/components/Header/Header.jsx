@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Header.module.css";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -7,7 +8,9 @@ function Header() {
       <div className={styles.overlay}>
         <h1>Discover Your Style</h1>
         <p>Trendy fashion and lifestyle products just for you</p>
-        <button className={styles.shopBtn}>Shop Now</button>
+        <Link to="/category">
+          <button className={styles.shopBtn}>Shop Now</button>
+        </Link>
       </div>
     </header>
   );
