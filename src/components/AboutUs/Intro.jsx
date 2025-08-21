@@ -7,7 +7,11 @@ const Intro = () => {
   return (
     <div className={styles.intro}>
       <div className={styles.imageContainer}>
-        <img src={IntroIMG} alt="Intro" className={styles.image} />
+        <img
+          src={`${process.env.PUBLIC_URL}/Intro.jpg`}
+          alt="Intro"
+          className={styles.image}
+        />
       </div>
       <div className={styles.content}>
         <h2>Welcome to TrendyHub!</h2>
