@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPesoSign, faStar, faTruck } from "@fortawesome/free-solid-svg-icons";
-import { useCart } from "../components/Cart/CartContext.jsx";
+import { useCart } from "../Cart/CartContext.jsx";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -13,6 +13,8 @@ const ProductDetail = () => {
   const [error, setError] = useState("");
 
   const { cart, addToCart, decreaseQuantity } = useCart();
+
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   useEffect(() => {
     console.log("Fetching product with ID:", id);
@@ -51,22 +53,19 @@ const ProductDetail = () => {
       </p>
 
       <div>
-        <Link to="/">
-          <button>Back</button>
-        </Link>
-
         {(() => {
           const inCart = cart.find((item) => item.id === product.id);
           return (
             <div>
-              <button onClick={() => decreaseQuantity(product.id)}>-</button>
-              <span style={{ margin: "0 10px" }}>
-                {inCart ? inCart.quantity : 0}
-              </span>
-              <button onClick={() => addToCart(product)}>+</button>
+              <button onClick={() => addToCart(product)}>Add To Cart</button>
+              {inCart ? <p>In cart: {inCart.quantity}</p> : <p>In cart: 0</p>}
             </div>
           );
         })()}
+        <br />
+        <Link to="/">
+          <button>Back</button>
+        </Link>
       </div>
     </div>
   );

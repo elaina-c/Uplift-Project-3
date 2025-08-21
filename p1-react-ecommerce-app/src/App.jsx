@@ -4,9 +4,9 @@ import NavBar from "./components/NavBar/NavBar";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import Category from "./pages/Category";
-import CategoryProducts from "./pages/CategoryProducts";
+import CategoryProducts from "./components/Category/CategoryProducts";
 import Cart from "./components/Cart/Cart";
-import ProductDetail from "./pages/ProductDetail";
+import ProductDetail from "./components/Products/ProductDetail";
 
 function App() {
   return (

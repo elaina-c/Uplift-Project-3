@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useCart } from "../components/Cart/CartContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPesoSign, faStar, faTruck } from "@fortawesome/free-solid-svg-icons";
+import Header from "../components/Header/Header";
+import PopularProducts from "../components/Products/PopularProducts";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -34,6 +36,9 @@ const Home = () => {
 
   return (
     <div>
+      <Header />
+      <PopularProducts />
+      <br />
       {products.map((product) => (
         <Link
           key={product.id}
