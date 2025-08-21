@@ -9,6 +9,7 @@ import WomensSection from "../components/Products/WomensSection";
 import MensSection from "../components/Products/MensSection";
 import styles from "./Home.module.css";
 import BackToTop from "../components/BackToTop/BackToTop";
+import LaptopSection from "../components/Products/LaptopSection";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -42,6 +43,7 @@ const Home = () => {
     <div className={styles.home}>
       <Header />
       <PopularProducts />
+      <LaptopSection />
       <WomensSection />
       <MensSection />
       <BackToTop />

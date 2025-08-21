@@ -55,6 +55,7 @@ footer a {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  justify-content: center;
 }
 
 .card {
@@ -66,6 +67,25 @@ footer a {
   border-radius: 12px;
   width: 100px;
   transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s forwards;
+}
+
+.card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.card:nth-child(5) {
+  animation-delay: 0.5s;
 }
 
 .card span {
@@ -128,6 +148,13 @@ footer p {
   text-align: center;
 }
 
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (min-width: 768px) {
   .footerContent {
     flex-direction: row;
@@ -136,5 +163,41 @@ footer p {
   }
   .contactCards {
     flex-wrap: nowrap;
+  }
+}
+
+@media (max-width: 767px) {
+  .contactCards {
+    gap: 10px;
+  }
+
+  .card {
+    width: 80px;
+    padding: 10px;
+  }
+
+  .icon {
+    font-size: 1.6rem;
+  }
+
+  .messageBtn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .brand h2 {
+    font-size: 1.5rem;
+  }
+
+  .brand p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .messageBtn {
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px;
   }
 }

@@ -18,8 +18,8 @@ const Footer = () => {
             <h2 className={styles.logo}>TrendyHub</h2>
           </Link>
           <p>
-            Your style, your choice. We value your thoughts and ideas, and we’d
-            love to hear your feedback to make your experience even better!
+            Your style, your choice. We’d love to hear your feedback to make
+            your experience even better!
           </p>
         </div>
 
@@ -84,6 +84,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
+
           <div className={styles.feedback}>
             <Link to="/contact" className={styles.feedbackLink}>
               <h2 className={styles.feedbackTitle}>Feedback</h2>

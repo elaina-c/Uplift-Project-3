@@ -1,30 +1,24 @@
 import React from "react";
-import { useCart } from "../Cart/CartContext";
+import { useCart } from "./CartContext";
 import styles from "./Cart.module.css";
-import BackToTop from "../BackToTop/BackToTop";
 
 const Cart = () => {
   const { cart, addToCart, decreaseQuantity, removeFromCart, clearCart } =
     useCart();
 
   const formatPrice = (price) =>
-    `₱${price.toLocaleString("en-PH", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    })}`;
+    `₱${price.toLocaleString("en-PH", { minimumFractionDigits: 2 })}`;
 
   const totalPrice = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
 
-  if (cart.length === 0) {
+  if (cart.length === 0)
     return <div className={styles.empty}>Your cart is empty 🛒</div>;
-  }
 
   return (
     <div className={styles.cartContainer}>
-      <BackToTop />
       <h2>Your Cart</h2>
       <table className={styles.cartTable}>
         <thead>
@@ -41,17 +35,14 @@ const Cart = () => {
           {cart.map((item) => (
             <tr key={item.id}>
               <td>
-                <img src={item.thumbnail} width="100px" alt={item.title} />
+                <img src={item.thumbnail} alt={item.title} width="100px" />
               </td>
               <td>{item.title}</td>
               <td>{formatPrice(item.price)}</td>
               <td>
-                <div>
-                  {item.quantity}
-                  <br />
-                  <button onClick={() => decreaseQuantity(item.id)}>-</button>
-                  <button onClick={() => addToCart(item)}>+</button>
-                </div>
+                <button onClick={() => decreaseQuantity(item.id)}>-</button>
+                {item.quantity}
+                <button onClick={() => addToCart(item)}>+</button>
               </td>
               <td>{formatPrice(item.price * item.quantity)}</td>
               <td>
@@ -62,7 +53,9 @@ const Cart = () => {
         </tbody>
       </table>
       <h3>Total: {formatPrice(totalPrice)}</h3>
-      <button onClick={clearCart}>Clear Cart</button>
+      <button className={styles.clearBtn} onClick={clearCart}>
+        Clear Cart
+      </button>
     </div>
   );
 };

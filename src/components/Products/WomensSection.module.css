@@ -16,6 +16,10 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   padding: 10px;
+  scrollbar-width: none;
+}
+.container::-webkit-scrollbar {
+  display: none;
 }
 
 .cardLink {
@@ -32,6 +36,11 @@
   background: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
 }
 
 .image {
@@ -71,4 +80,61 @@
 
 .right {
   right: 0;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.3rem;
+    margin-left: 10px;
+  }
+
+  .container {
+    gap: 10px;
+    padding: 5px;
+  }
+
+  .card {
+    min-width: 160px;
+    padding: 8px;
+  }
+
+  .image {
+    height: 130px;
+  }
+
+  .name {
+    font-size: 0.95rem;
+  }
+
+  .price {
+    font-size: 0.9rem;
+  }
+
+  .scrollBtn {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.2rem;
+    margin-left: 5px;
+  }
+
+  .card {
+    min-width: 140px;
+    padding: 6px;
+  }
+
+  .image {
+    height: 110px;
+  }
+
+  .name {
+    font-size: 0.85rem;
+  }
+
+  .price {
+    font-size: 0.85rem;
+  }
 }

@@ -22,7 +22,6 @@ const CategoryProducts = () => {
     <div className={styles.categoryPage}>
       <Category />
       <h2 className={styles.categoryTitle}>Products in {categoryName}</h2>
-
       {products.length === 0 ? (
         <p>No products found in this category.</p>
       ) : (

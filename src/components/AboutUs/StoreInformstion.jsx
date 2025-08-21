@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./StoreInformation.module.css";
+import StoreImg from "../../assets/Store.jpg";
 
 const StoreInformation = () => {
   return (
     <div className={styles.storeInfo}>
       <div className={styles.imageContainer}>
-        <img src="/Store.jpg" alt="Store" className={styles.image} />
+        <img src={StoreImg} alt="Store" className={styles.image} />
       </div>
       <div className={styles.content}>
         <h3>Our Store</h3>

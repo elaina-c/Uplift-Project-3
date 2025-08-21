@@ -65,6 +65,9 @@ const Contact = () => {
           <a href="mailto:limelaine14@gmail.com">
             <FaEnvelope /> Email
           </a>
+          <a href="tel:+639368195756">
+            <FaPhone /> Phone
+          </a>
         </div>
 
         <form ref={form} onSubmit={sendEmail} className={styles.contactForm}>

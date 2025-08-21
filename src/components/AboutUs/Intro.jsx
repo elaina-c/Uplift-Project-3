@@ -1,12 +1,13 @@
 import React from "react";
 import styles from "./Intro.module.css";
 import Header from "../Header/Header";
+import IntroIMG from "../../assets/Intro.jpg";
 
 const Intro = () => {
   return (
     <div className={styles.intro}>
       <div className={styles.imageContainer}>
-        <img src="/Intro.jpg" alt="Intro" className={styles.image} />
+        <img src={IntroIMG} alt="Intro" className={styles.image} />
       </div>
       <div className={styles.content}>
         <h2>Welcome to TrendyHub!</h2>
