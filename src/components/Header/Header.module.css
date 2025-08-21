@@ -5,6 +5,12 @@
   justify-content: center;
   position: relative;
   color: white;
+
+  background: url(/Uplift-Project-3/HeaderIMG.jpg) no-repeat center center/cover;
+}
+
+.hero {
+  background: url(/Uplift-Project-3/HeaderIMG.jpg) no-repeat center center/cover;
 }
 
 .overlay {
@@ -12,6 +18,31 @@
   background: rgba(0, 0, 0, 0.5);
   padding: 40px;
   border-radius: 10px;
+}
+
+.overlay h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.overlay p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.shopBtn {
+  background: white;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.shopBtn:hover {
+  background: #ddd;
 }
 
 .overlay h1 {
@@ -43,11 +74,9 @@
   .overlay h1 {
     font-size: 2.5rem;
   }
-
   .overlay p {
     font-size: 1.1rem;
   }
-
   .cta {
     padding: 10px 20px;
     font-size: 0.95rem;
@@ -58,19 +87,15 @@
   .hero {
     height: 60vh;
   }
-
   .overlay {
     padding: 25px;
   }
-
   .overlay h1 {
     font-size: 2rem;
   }
-
   .overlay p {
     font-size: 1rem;
   }
-
   .cta {
     padding: 8px 18px;
     font-size: 0.9rem;
@@ -81,15 +106,12 @@
   .hero {
     height: 50vh;
   }
-
   .overlay h1 {
     font-size: 1.5rem;
   }
-
   .overlay p {
     font-size: 0.9rem;
   }
-
   .cta {
     padding: 6px 14px;
     font-size: 0.85rem;
