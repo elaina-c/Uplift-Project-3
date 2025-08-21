@@ -3,13 +3,12 @@ import styles from "./BestDeals.module.css";
 import LaptopSection from "../Products/LaptopSection";
 import PopularProducts from "../Products/PopularProducts";
 import MensSection from "../Products/MensSection";
-import BestDealsImg from "../../assets/BestDeals.jpg";
 
 const BestDeals = () => {
   return (
     <div className={styles.bestDeals}>
       <div className={styles.imageContainer}>
-        <img src={BestDealsImg} alt="Best Deals" className={styles.image} />
+        <img src="/BestDeals.jpg" alt="Best Deals" className={styles.image} />
       </div>
       <div className={styles.content}>
         <h3>Best Deals</h3>
