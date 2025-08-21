@@ -8,20 +8,30 @@ import CategoryProducts from "./components/Category/CategoryProducts";
 import Cart from "./components/Cart/Cart";
 import ProductDetail from "./components/Products/ProductDetail";
 import ContactInfo from "./pages/ContactInfo";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
     <>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/category" element={<Category />} />
-        <Route path="/category/:categoryName" element={<CategoryProducts />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/contact" element={<ContactInfo />} />
-      </Routes>
+      <div className="app-container">
+        <NavBar />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/category" element={<Category />} />
+            <Route
+              path="/category/:categoryName"
+              element={<CategoryProducts />}
+            />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/contact" element={<ContactInfo />} />
+          </Routes>
+        </main>
+
+        <Footer />
+      </div>
     </>
   );
 }
