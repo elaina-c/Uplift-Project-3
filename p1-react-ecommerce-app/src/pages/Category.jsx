@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import styles from "./Category.module.css";
+import BackToTop from "../components/BackToTop/BackToTop";
 
 const Category = () => {
   const [categories, setCategories] = useState([]);
@@ -7,31 +9,27 @@ const Category = () => {
   useEffect(() => {
     fetch("https://dummyjson.com/products/categories")
       .then((res) => res.json())
-      .then((data) => setCategories(data))
+      .then((data) => {
+        setCategories(Array.isArray(data) ? data : []);
+      })
       .catch((error) => console.error("Error fetching categories:", error));
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Product Categories</h2>
-      <ul style={{ listStyle: "none", padding: 0 }}>
+    <div className={styles.categoryContainer}>
+      <h2 className={styles.categoryTitle}>Shop by Category</h2>
+      <div className={styles.categoryGrid}>
         {categories.map((category, index) => (
-          <li key={index} style={{ marginBottom: "10px" }}>
-            <Link
-              to={`/category/${category.slug}`}
-              style={{
-                textDecoration: "none",
-                background: "#eee",
-                padding: "10px",
-                display: "inline-block",
-                borderRadius: "6px",
-              }}
-            >
-              {category.name}
-            </Link>
-          </li>
+          <Link
+            key={index}
+            to={`/category/${category.slug}`}
+            className={styles.categoryCard}
+          >
+            <p className={styles.categoryName}>{category.name}</p>
+          </Link>
         ))}
-      </ul>
+      </div>
+      <BackToTop />
     </div>
   );
 };

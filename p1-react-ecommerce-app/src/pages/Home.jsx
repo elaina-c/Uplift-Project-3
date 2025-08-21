@@ -5,6 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPesoSign, faStar, faTruck } from "@fortawesome/free-solid-svg-icons";
 import Header from "../components/Header/Header";
 import PopularProducts from "../components/Products/PopularProducts";
+import WomensSection from "../components/Products/WomensSection";
+import MensSection from "../components/Products/MensSection";
+import styles from "./Home.module.css";
+import BackToTop from "../components/BackToTop/BackToTop";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -35,37 +39,41 @@ const Home = () => {
   if (!products.length) return <p>No product found.</p>;
 
   return (
-    <div>
+    <div className={styles.home}>
       <Header />
       <PopularProducts />
-      <br />
-      {products.map((product) => (
-        <Link
-          key={product.id}
-          to={`/product/${product.id}`}
-          style={{ textDecoration: "none", color: "inherit" }}
-        >
-          <div
-            className="product-item"
-            style={{
-              border: "1px solid #ccc",
-              marginBottom: "10px",
-              padding: "10px",
-              cursor: "pointer",
-            }}
+      <WomensSection />
+      <MensSection />
+      <BackToTop />
+
+      <h2 className={styles.sectionTitle}>Other Products</h2>
+      <div className={styles.productGrid}>
+        {products.map((product) => (
+          <Link
+            key={product.id}
+            to={`/product/${product.id}`}
+            style={{ textDecoration: "none", color: "inherit" }}
           >
-            <img src={product.thumbnail} width="100px" alt={product.title} />
-            <h5>{product.title}</h5>
-            <p>
-              <FontAwesomeIcon icon={faPesoSign} /> {product.price}
-              <br />
-              <FontAwesomeIcon icon={faStar} /> {product.rating}
-              <br />
-              <FontAwesomeIcon icon={faTruck} /> {product.stock} in stock
-            </p>
-          </div>
-        </Link>
-      ))}
+            <div className={styles.productCard}>
+              <img
+                src={product.thumbnail}
+                alt={product.title}
+                className={styles.productImage}
+              />
+              <div className={styles.productInfo}>
+                <h5 className={styles.productName}>{product.title}</h5>
+                <p className={styles.productPrice}>
+                  <FontAwesomeIcon icon={faPesoSign} /> {product.price}
+                </p>
+                <p className={styles.productMeta}>
+                  <FontAwesomeIcon icon={faStar} /> {product.rating} <br />
+                  <FontAwesomeIcon icon={faTruck} /> {product.stock} in stock
+                </p>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };

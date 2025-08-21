@@ -1,6 +1,7 @@
 import React from "react";
 import { useCart } from "../Cart/CartContext";
 import styles from "./Cart.module.css";
+import BackToTop from "../BackToTop/BackToTop";
 
 const Cart = () => {
   const { cart, addToCart, decreaseQuantity, removeFromCart, clearCart } =
@@ -23,8 +24,9 @@ const Cart = () => {
 
   return (
     <div className={styles.cartContainer}>
+      <BackToTop />
       <h2>Your Cart</h2>
-      <table className={styles.cartTable} border={1}>
+      <table className={styles.cartTable}>
         <thead>
           <tr>
             <th>Product</th>
@@ -32,22 +34,24 @@ const Cart = () => {
             <th>Price</th>
             <th>Qty</th>
             <th>Subtotal</th>
-            <th></th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {cart.map((item) => (
             <tr key={item.id}>
               <td>
-                {" "}
                 <img src={item.thumbnail} width="100px" alt={item.title} />
               </td>
               <td>{item.title}</td>
               <td>{formatPrice(item.price)}</td>
               <td>
-                {item.quantity} <br />
-                <button onClick={() => decreaseQuantity(item.id)}>-</button>
-                <button onClick={() => addToCart(item)}>+</button>
+                <div>
+                  {item.quantity}
+                  <br />
+                  <button onClick={() => decreaseQuantity(item.id)}>-</button>
+                  <button onClick={() => addToCart(item)}>+</button>
+                </div>
               </td>
               <td>{formatPrice(item.price * item.quantity)}</td>
               <td>

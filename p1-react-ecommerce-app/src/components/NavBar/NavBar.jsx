@@ -10,7 +10,7 @@ const NavBar = () => {
 
   return (
     <nav className={styles.navbar}>
-      <div className={styles.logo}>MyStore</div>
+      <div className={styles.logo}>TrendyHub</div>
       <ul className={styles.navLinks}>
         <li>
           <Link to="/">Home</Link>
