@@ -1,13 +1,12 @@
 import React from "react";
 import styles from "./StoreInformation.module.css";
-import StoreImg from "../../assets/Store.jpg";
 
 const StoreInformation = () => {
   return (
     <div className={styles.storeInfo}>
       <div className={styles.imageContainer}>
         <img
-          src={`${process.env.PUBLIC_URL}/Store.jpg`}
+          src={`${import.meta.env.BASE_URL}Store.jpg`}
           alt="Store"
           className={styles.image}
         />

@@ -1,14 +1,13 @@
 import React from "react";
 import styles from "./Intro.module.css";
 import Header from "../Header/Header";
-import IntroIMG from "../../assets/Intro.jpg";
 
 const Intro = () => {
   return (
     <div className={styles.intro}>
       <div className={styles.imageContainer}>
         <img
-          src={`${process.env.PUBLIC_URL}/Intro.jpg`}
+          src={`${import.meta.env.BASE_URL}Intro.jpg`}
           alt="Intro"
           className={styles.image}
         />

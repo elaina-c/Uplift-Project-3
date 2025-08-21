@@ -3,14 +3,13 @@ import styles from "./BestDeals.module.css";
 import LaptopSection from "../Products/LaptopSection";
 import PopularProducts from "../Products/PopularProducts";
 import MensSection from "../Products/MensSection";
-import BestDealsImg from "../../assets/BestDeals.jpg";
 
 const BestDeals = () => {
   return (
     <div className={styles.bestDeals}>
       <div className={styles.imageContainer}>
         <img
-          src={`${process.env.PUBLIC_URL}/BestDeals.jpg`}
+          src={`${import.meta.env.BASE_URL}BestDeals.jpg`}
           alt="Best Deals"
           className={styles.image}
         />
