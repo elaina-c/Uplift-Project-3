@@ -8,7 +8,11 @@ const BestDeals = () => {
   return (
     <div className={styles.bestDeals}>
       <div className={styles.imageContainer}>
-        <img src="/BestDeals.jpg" alt="Best Deals" className={styles.image} />
+        <img
+          src={`${import.meta.env.BASE_URL}BestDeals.jpg`}
+          alt="Best Deals"
+          className={styles.image}
+        />
       </div>
       <div className={styles.content}>
         <h3>Best Deals</h3>

@@ -6,7 +6,11 @@ const Intro = () => {
   return (
     <div className={styles.intro}>
       <div className={styles.imageContainer}>
-        <img src="/Intro.jpg" alt="Intro" className={styles.image} />
+        <img
+          src={`${import.meta.env.BASE_URL}Intro.jpg`}
+          alt="Intro"
+          className={styles.image}
+        />
       </div>
       <div className={styles.content}>
         <h2>Welcome to TrendyHub!</h2>

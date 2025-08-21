@@ -5,7 +5,11 @@ const StoreInformation = () => {
   return (
     <div className={styles.storeInfo}>
       <div className={styles.imageContainer}>
-        <img src="/Store.jpg" alt="Store" className={styles.image} />
+        <img
+          src={`${import.meta.env.BASE_URL}Store.jpg`}
+          alt="Store"
+          className={styles.image}
+        />
       </div>
       <div className={styles.content}>
         <h3>Our Store</h3>
