@@ -1,6 +1,5 @@
 .hero {
   height: 80vh;
-  background: url("HeaderIMG.jpg") no-repeat center center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
